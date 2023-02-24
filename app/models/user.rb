@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships,source: :follower
   
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness:true
-  
+  validates :introduction,length:{maximum: 50}
   
   
   def get_profile_image
@@ -33,5 +33,4 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
-  validates :introduction,length:{maximum: 50}
 end

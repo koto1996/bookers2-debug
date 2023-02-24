@@ -18,6 +18,7 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          <td><%= render "favorites/favorite",book: @book %></td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
@@ -27,16 +28,26 @@
             </td>
         </tr>
       </table>
-      <div>
+      <table>
+        <tbody>
           <%@book.post_comments.each do |post_comment|%>
-          <p><%= image_tag post_comment.user.get_profile_image,size:"50x50" %></P>
-          <p><%= post_comment.user.name%></p>
-          <p><%= post_comment.comment%></p>
-          <% if post_comment.user == current_user %>
-           <%= link_to "Destroy",book_post_comment_path(post_comment.book,post_comment),method: :delete %>
-          <% end %>
-          <% end %>
-      </div>
+          <tr>
+            <td>
+              <%= link_to user_path(post_comment.user) do %>
+                 <%= image_tag post_comment.user.get_profile_image,size:"50x50" %><br>
+                 <%= post_comment.user.name%>
+              <% end %>
+            </td>
+            <td><%= post_comment.comment%></td>
+            <td>
+              <% if post_comment.user == current_user %>
+                 <%= link_to "Destroy",book_post_comment_path(@book,post_comment),method: :delete,class: "btn btn-danger pull-right"%>
+              <% end %>
+            </td>
+          </tr>
+         <% end %>
+        </tbody>
+      </table>
       <div>
           <%=form_with model:[@book,@post_comment] do |f|%>
            <%= f.text_area :comment,rows:'5' %>
