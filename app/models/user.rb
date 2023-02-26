@@ -10,8 +10,9 @@ class User < ApplicationRecord
   has_many :relationships,foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   
-  has_many :followings, through: :relationships,source: :follower
-  has_many :followers, through: :reverse_of_relationships,source: :followed
+  has_many :followings, through: :relationships,source: :followed
+  has_many :followers, through: :reverse_of_relationships,source: :follower
+  
   
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness:true
   validates :introduction,length:{maximum: 50}
@@ -33,4 +34,15 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  def self.search_for(content, method)
+    if method == 'perfect'
+     User.where(name: content)
+    elsif method == 'forward'
+     User.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+     User.where('name LIKE ?', '%' + content)
+    else
+     User.where('name LIKE ?', '%' + content + '%')
+    end
+   end
 end
