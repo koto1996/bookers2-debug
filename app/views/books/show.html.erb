@@ -49,7 +49,7 @@
         </tbody>
       </table>
       <div>
-          <%=form_with model:[@book,@post_comment] do |f|%>
+          <%=form_with model:[@book,@post_comment], local: false do |f|%>
            <%= f.text_area :comment,rows:'5' %>
            <%= f.submit "送信"%>
           <% end %>
