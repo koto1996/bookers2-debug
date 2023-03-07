@@ -47,5 +47,5 @@ class User < ApplicationRecord
     else
      User.where('name LIKE ?', '%' + content + '%')
     end
-   end
+  end
 end
