@@ -3,18 +3,17 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-//= require chartkick
-//= require Chart.bundle
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "jquery"
+import jQuery from "jquery"
 import "popper.js"
 import "bootstrap"
+import Chart from 'chart.js/auto'; //グラフ出力時に記述
 import '@fortawesome/fontawesome-free/js/all';
-import "../stylesheets/application" 
+import "../stylesheets/application"
 
 Rails.start()
 Turbolinks.start()
@@ -22,3 +21,4 @@ ActiveStorage.start()
 
 global.$=jQuery;
 window.$=jQuery;
+global.Chart = Chart;　//グラフ出力時に記述
