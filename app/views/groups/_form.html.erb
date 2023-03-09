@@ -3,17 +3,17 @@
    <%= f.label :グループ名 %>
    <%= f.text_field :name,class: 'form-control'%>
  </div>
- 
+
  <div class="form-group">
    <%= f.label :紹介文 %>
    <%= f.text_area :introduction, class: 'form-control'%>
  </div>
- 
+
  <div class="form-group">
    <%= f.label :グループ画像 %>
-   <%= f.atttachment_field :image,class:"form-control-file" %>
+   <%= f.atttachment_field user.get_profile_image,class:"form-control-file" %>
  </div>
- 
+
  <div class="form-group">
    <%= f.submit class:'btn btn-info'%>
  </div>

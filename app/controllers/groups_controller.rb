@@ -6,7 +6,10 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
   
-  
+  def show
+    @book = Book.new
+    @group = Group.find(params[:id])
+  end  
   
   def new
     @group = Group.new
@@ -19,6 +22,17 @@ class GroupsController < ApplicationController
       redirect_to groups_path
     else
       render :new
+    end
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @group.update(group_params)
+      redirect_to groups_path
+    else
+      render :edit
     end
   end
  
