@@ -17,7 +17,7 @@ import "../stylesheets/application"
 
 import Raty from "raty.js" //レビュー評価時に記述
 window.raty = function(elem,opt){
-  let raty = new Raty(elem,opt)
+  let raty = newRaty(elem,opt)
   raty.init();
   return raty;
 }

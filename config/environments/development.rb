@@ -81,7 +81,7 @@ Rails.application.configure do
       authentication:  'login',
       enable_starttls_auto: true
     }
-  # config.hosts << "a8c9cb2b77b24968bf1f0967084f4a3f.vfs.cloud9.us-east-1.amazonaws.com"
+  config.hosts << "a8c9cb2b77b24968bf1f0967084f4a3f.vfs.cloud9.us-east-1.amazonaws.com"
 
   config.hosts.clear
   # Uncomment if you wish to allow Action Cable access from any origin.
