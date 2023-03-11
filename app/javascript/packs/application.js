@@ -15,6 +15,13 @@ import Chart from 'chart.js/auto'; //グラフ出力時に記述
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 
+import Raty from "raty.js" //レビュー評価時に記述
+window.raty = function(elem,opt){
+  let raty = new Raty(elem,opt)
+  raty.init();
+  return raty;
+}
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
